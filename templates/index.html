@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta charset="UTF-8">
+	
+	<!-- FontAwesome -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<title>Student manager</title>
+	
+	<!-- Bootstrap lib -->
+   	{% load bootstrap4 %}
+   	{# CSS Bootstrap #}
+   	{% bootstrap_css %}
+
+<style>
+	body{
+		text-align: center;
+	}
+	table td {
+		text-align: center;
+	}
+</style>
+
+</head>
+
+{% block body %}
+<body style="width:100%; height:auto;">
+	<h1>Gestionador de alumnos!</h1>
+	<a href="{% url 'CreateStudent' %}" class='btn btn-success text-white mt-5'>Cargar alumno!</a>
+	<div class="student-container w-100 mt-5" style="height:auto">
+		<table class='table'>
+			<thead>
+				<tr>
+					<td>Nombre</td>
+					<td>Curso</td>
+					<td>Acciones</td>
+				</tr>
+			</thead>
+			<tbody>
+				{% for student in object_list %}
+				<tr>
+					<td>{{student.name}} {{student.last_name}}</td>
+					<td>{{student.course}}</td>
+					<td>
+						<a href='{% url "UpdateStudent" student.id %}' class='btn btn-sm btn-info mr-2'><i class='fa fa-pencil'></i></a`>
+						<a href='{% url "DeleteStudent" student.id %}' class='btn btn-sm btn-danger'><i class='fa fa-trash'></i></a>
+					</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>		
+	</div>	
+
+<!-- Load bootstrap and jquery -->
+{% bootstrap_javascript jquery='full' %}	
+</body>
+{% endblock body %}
+
+</html>

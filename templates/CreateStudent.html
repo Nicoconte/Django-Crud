@@ -1,0 +1,17 @@
+{% extends "index.html" %}
+
+{% block body %}
+{% load bootstrap4 %}
+
+<div class="create-form-container w-100 d-flex justify-content-center align-items-center flex-column">
+
+	<form method="POST" class='form w-50'>
+		{% csrf_token %}
+		{% 	bootstrap_form form %}
+		<button class='btn btn-success btn-sm text-white' type='submit'>Crear o Editar</button>
+		<a class='btn btn-sm btn-info text-white' href="{% url 'index' %}">Volver</a>
+	</form>
+
+</div>
+
+{% endblock body %}
